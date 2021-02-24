@@ -30,8 +30,8 @@ class ChildrensBookIllustrationsDataset(Dataset):
         if torch.is_tensor(idx):
             idx = idx.tolist()
 
-        img_filename = (self.labels.iloc[idx, 2]).split('/')[-1]
-        img_path = os.path.join(self.root_dir, img_filename)
+        img_filename = (self.labels.iloc[idx, 2]).split('/')[-1].split('.')[0]
+        img_path = os.path.join(self.root_dir, img_filename+'.jpg')
         image = io.imread(img_path)
         text = str(self.labels.iloc[idx, 6])
         book = int(self.labels.iloc[idx, 3])
